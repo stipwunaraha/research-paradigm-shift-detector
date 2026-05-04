@@ -1,0 +1,14 @@
+LICENSE
+README.md
+pyproject.toml
+setup.cfg
+stip/__init__.py
+stip/detector.py
+stip/embedding.py
+stip/shift_analyzer.py
+stip.egg-info/PKG-INFO
+stip.egg-info/SOURCES.txt
+stip.egg-info/dependency_links.txt
+stip.egg-info/requires.txt
+stip.egg-info/top_level.txt
+tests/test_stip.py

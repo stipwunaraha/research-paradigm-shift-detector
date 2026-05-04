@@ -1,0 +1,54 @@
+{
+  "term": "attention",
+  "time_slices": [
+    "1990-1994",
+    "1995-1999",
+    "2000-2004",
+    "2005-2009",
+    "2010-2014",
+    "2015-2019",
+    "2020-2024"
+  ],
+  "detected_shifts": [
+    {
+      "year": 2009,
+      "similarity": -0.478067106152075,
+      "significance_score": 0.9726027397260274,
+      "context_before": "Usage before 2009",
+      "context_after": "Usage after 2009"
+    },
+    {
+      "year": 2014,
+      "similarity": -0.3372780852795348,
+      "significance_score": 0.9589041095890412,
+      "context_before": "Usage before 2014",
+      "context_after": "Usage after 2014"
+    }
+  ],
+  "timeline": [
+    {
+      "time_slice": "1995-1999",
+      "similarity": -0.05397858795279855
+    },
+    {
+      "time_slice": "2000-2004",
+      "similarity": 0.12250682073812917
+    },
+    {
+      "time_slice": "2005-2009",
+      "similarity": -0.478067106152075
+    },
+    {
+      "time_slice": "2010-2014",
+      "similarity": -0.3372780852795348
+    },
+    {
+      "time_slice": "2015-2019",
+      "similarity": 0.41373824607726295
+    },
+    {
+      "time_slice": "2020-2024",
+      "similarity": -0.08008430195356898
+    }
+  ]
+}
