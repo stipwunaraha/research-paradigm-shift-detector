@@ -25,7 +25,7 @@ STIP (Structural Timeline of Intellectual Progression) adalah library Python yan
 
 ## 🚀 Quick Start
 
-### Instalasi
+### Instalasi Cepat
 
 ```bash
 # Clone repository
@@ -73,6 +73,226 @@ Term: "learning"
 Term: "network"
   Year 2005: similarity=-0.312, significance=0.995 ⚠️
 ```
+
+---
+
+## 📋 Panduan Instalasi Lengkap di Localhost
+
+Panduan ini akan membantu Anda menyiapkan environment development STIP dari awal hingga siap digunakan.
+
+### Prasyarat
+
+Sebelum memulai, pastikan Anda telah menginstall:
+
+- **Python 3.8+** ([Download](https://www.python.org/downloads/))
+- **pip** (Python package manager, biasanya sudah terinstall dengan Python)
+- **Git** ([Download](https://git-scm.com/))
+
+Verifikasi instalasi:
+```bash
+python --version  # Harus >= 3.8
+pip --version
+git --version
+```
+
+### Langkah 1: Clone Repository
+
+```bash
+git clone https://github.com/stipwunaraha/research-paradigm-shift-detector.git
+cd research-paradigm-shift-detector
+```
+
+### Langkah 2: Buat Virtual Environment (Recommended)
+
+Menggunakan virtual environment mencegah konflik dependency dengan project lain.
+
+#### Opsi A: Menggunakan `venv` (Built-in Python)
+
+**Linux/macOS:**
+```bash
+python -m venv venv
+source venv/bin/activate
+```
+
+**Windows:**
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
+
+#### Opsi B: Menggunakan `conda` (Jika pakai Anaconda/Miniconda)
+
+```bash
+conda create -n stip python=3.9
+conda activate stip
+```
+
+### Langkah 3: Install Dependencies
+
+Setelah virtual environment aktif (anda akan melihat `(venv)` atau `(stip)` di awal prompt terminal):
+
+```bash
+# Upgrade pip terlebih dahulu
+pip install --upgrade pip
+
+# Install semua dependencies
+pip install -r requirements.txt
+```
+
+**Catatan:** Proses ini mungkin memakan waktu 5-10 menit tergantung koneksi internet.
+
+### Langkah 4: Download Model NLP
+
+STIP menggunakan spaCy untuk preprocessing teks. Download model yang diperlukan:
+
+```bash
+# Model dasar (wajib)
+python -m spacy download en_core_web_sm
+
+# Model medium (opsional, untuk akurasi lebih baik)
+python -m spacy download en_core_web_md
+
+# Model khusus biomedical (opsional, jika analisis paper medis)
+pip install scispacy
+python -m spacy download en_core_sci_sm
+```
+
+### Langkah 5: Install Package dalam Development Mode
+
+Ini memungkinkan Anda mengedit kode di folder `stip/` dan langsung melihat perubahan:
+
+```bash
+pip install -e .
+```
+
+### Langkah 6: Verifikasi Instalasi
+
+Jalankan tests untuk memastikan semua berfungsi dengan baik:
+
+```bash
+# Jalankan semua tests
+pytest tests/ -v
+
+# Atau jalankan contoh script
+python examples/analyze_attention.py
+```
+
+Jika semua tests passing ✅, instalasi berhasil!
+
+### Langkah 7: Generate Sample Data (Opsional)
+
+Untuk mencoba dengan dataset lebih besar:
+
+```bash
+python data/generate_sample.py
+```
+
+---
+
+## 🔧 Troubleshooting Umum
+
+### Error: `ModuleNotFoundError: No module named 'spacy'`
+
+**Solusi:**
+```bash
+pip install -r requirements.txt
+python -m spacy download en_core_web_sm
+```
+
+### Error: `Permission denied` saat install
+
+**Solusi (Linux/macOS):**
+```bash
+pip install --user -r requirements.txt
+```
+
+**Solusi (Windows):**
+Jalankan terminal sebagai Administrator.
+
+### Error: Konflik versi package
+
+**Solusi:** Buat virtual environment baru dari awal:
+```bash
+# Hapus venv lama
+rm -rf venv  # Linux/macOS
+rmdir /s venv  # Windows
+
+# Buat baru
+python -m venv venv
+source venv/bin/activate  # Linux/macOS
+venv\Scripts\activate  # Windows
+
+# Install ulang
+pip install -r requirements.txt
+```
+
+### Error: `spaCy model not found`
+
+**Solusi:**
+```bash
+python -m spacy download en_core_web_sm
+```
+
+Atau install manual:
+```bash
+pip install https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.5.0/en_core_web_sm-3.5.0-py3-none-any.whl
+```
+
+### Performance lambat saat proses data besar
+
+**Tips:**
+- Gunakan `time_slices` lebih sedikit untuk testing awal
+- Turunkan `min_freq` hanya jika diperlukan
+- Pertimbangkan menggunakan multiprocessing untuk dataset >10k dokumen
+
+---
+
+## 🛠️ Tools Development
+
+Setelah instalasi selesai, Anda dapat menggunakan tools berikut:
+
+### Code Formatting
+```bash
+black stip/ tests/ examples/
+```
+
+### Linting
+```bash
+flake8 stip/ tests/
+```
+
+### Type Checking
+```bash
+mypy stip/
+```
+
+### Test Coverage
+```bash
+pytest tests/ --cov=stip --cov-report=html
+# Buka hasil di browser: open htmlcov/index.html (macOS)
+# atau: start htmlcov/index.html (Windows)
+```
+
+### Pre-commit Hooks (Opsional)
+```bash
+# Install pre-commit
+pip install pre-commit
+
+# Setup hooks
+pre-commit install
+
+# Test hooks
+pre-commit run --all-files
+```
+
+---
+
+## 📚 Dokumentasi Lebih Lanjut
+
+- **SETUP.md**: Panduan setup detail dengan berbagai opsi environment
+- **examples/**: Script contoh penggunaan API
+- **tests/**: Referensi implementasi dan use cases
+- **GitHub Issues**: Untuk laporan bug dan request fitur
 
 ---
 
