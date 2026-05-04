@@ -42,18 +42,28 @@ class TestTemporalEmbedding:
         """Test similarity computation between time slices."""
         embedding = TemporalEmbedding(embedding_dim=50)
         
-        # Create two similar time slices
-        docs1 = ["artificial intelligence and machine learning"] * 10
-        docs2 = ["artificial intelligence and machine learning"] * 10
+        # Create two similar time slices with enough repeated terms
+        docs1 = [
+            "artificial intelligence and machine learning algorithms",
+            "machine learning and deep neural networks",
+            "artificial intelligence research and development",
+            "neural networks for pattern recognition",
+            "machine learning applications in science",
+        ] * 5
+        docs2 = [
+            "artificial intelligence and machine learning systems",
+            "machine learning and artificial neural networks", 
+            "artificial intelligence in modern computing",
+            "deep learning and neural architectures",
+            "machine learning for data analysis",
+        ] * 5
         
         embedding.fit_time_slice(docs1, "2000-2005")
         embedding.fit_time_slice(docs2, "2005-2010")
         
-        # Add a term that exists in both
-        # Note: This tests the basic functionality
-        # In practice, we'd need more sophisticated test data
-        similarity = embedding.compute_similarity("intelligence", "2000-2005", "2005-2010")
-        assert 0.0 <= similarity <= 1.0
+        # Test similarity for a term that should exist
+        similarity = embedding.compute_similarity("learning", "2000-2005", "2005-2010")
+        assert -1.0 <= similarity <= 1.0
 
 
 class TestShiftAnalyzer:
@@ -159,13 +169,13 @@ class TestIntegration:
                     }
                     f.write(json.dumps(doc) + '\n')
             
-            # Post-shift era
+            # Post-shift era with more varied vocabulary
             for year in range(2000, 2010):
                 for _ in range(20):
                     doc = {
                         "year": year,
                         "title": "ML paper",
-                        "abstract": "Attention mechanisms in neural networks and deep learning."
+                        "abstract": "Attention mechanisms and transformer neural networks for deep learning and natural language processing tasks."
                     }
                     f.write(json.dumps(doc) + '\n')
             

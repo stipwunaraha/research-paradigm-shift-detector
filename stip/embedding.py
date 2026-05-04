@@ -42,12 +42,13 @@ class TemporalEmbedding:
         Returns:
             Sparse co-occurrence matrix
         """
-        vectorizer = CountVectorizer(min_df=2, max_df=0.95)
+        # Use lower min_df and remove max_df to handle small/homogeneous datasets
+        vectorizer = CountVectorizer(min_df=1, max_features=1000)
         term_doc_matrix = vectorizer.fit_transform(documents)
         
         # Update vocabulary
         self.vocabulary = vectorizer.vocabulary_
-        self.reverse_vocabulary = {v: k for k, v in self.vocabulary.items()}
+        self.reverse_vocabulary = {v: k for v, k in self.vocabulary.items()}
         
         # Compute co-occurrence (term-document-term)
         co_occurrence = term_doc_matrix.T @ term_doc_matrix
