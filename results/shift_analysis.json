@@ -1,0 +1,39 @@
+{
+  "term": "attention",
+  "time_slices": [
+    "1990-1994",
+    "1995-1999",
+    "2000-2004",
+    "2005-2009",
+    "2010-2014",
+    "2015-2019",
+    "2020-2024"
+  ],
+  "detected_shifts": [],
+  "timeline": [
+    {
+      "time_slice": "1995-1999",
+      "similarity": 0.0
+    },
+    {
+      "time_slice": "2000-2004",
+      "similarity": 0.0
+    },
+    {
+      "time_slice": "2005-2009",
+      "similarity": 0.0
+    },
+    {
+      "time_slice": "2010-2014",
+      "similarity": 0.0
+    },
+    {
+      "time_slice": "2015-2019",
+      "similarity": 0.0
+    },
+    {
+      "time_slice": "2020-2024",
+      "similarity": 0.0
+    }
+  ]
+}
